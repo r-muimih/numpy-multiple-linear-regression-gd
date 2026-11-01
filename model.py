@@ -93,8 +93,14 @@ def normal_equation(X, y):
     """Closed-form least squares: solve (X^T X) w = X^T y."""
     return np.linalg.solve(X.T @ X, X.T @ y)
 
-# Step 11 - initialize_weights (not yet solved)
-# TODO: implement
+# Step 11 - initialize_weights
+import numpy as np
+
+def initialize_weights(n_features, seed=None):
+    """Return (n_features,) weights sampled i.i.d. from N(0, 0.01^2)."""
+    if seed is not None:
+        np.random.seed(seed)
+    return np.random.randn(n_features) * 0.01
 
 # Step 12 - gd_step (not yet solved)
 # TODO: implement

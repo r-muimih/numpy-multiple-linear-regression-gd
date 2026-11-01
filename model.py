@@ -149,8 +149,29 @@ def init_training_state(n_features, seed=None):
         "stopped": False,
     }
 
-# Step 16 - run_one_epoch (not yet solved)
-# TODO: implement
+# Step 16 - run_one_epoch
+def run_one_epoch(state, X_train, y_train, X_val, y_val, lr, patience):
+    """Perform one GD step, log losses, and refresh early-stopping on state."""
+    state["weights"] = gd_step(X_train, y_train, state["weights"], lr)
+
+    train_loss, val_loss = epoch_train_val_losses(
+        X_train, y_train, X_val, y_val, state["weights"]
+    )
+    state["train_losses"].append(train_loss)
+    state["val_losses"].append(val_loss)
+
+    (state["best_val_loss"],
+     state["wait"],
+     state["best_weights"],
+     state["stopped"]) = update_early_stop_state(
+        val_loss,
+        state["best_val_loss"],
+        state["wait"],
+        state["weights"],
+        state["best_weights"],
+        patience,
+    )
+    return state
 
 # Step 17 - train_batch_gd (not yet solved)
 # TODO: implement

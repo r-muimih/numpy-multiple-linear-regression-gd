@@ -197,8 +197,12 @@ def mean_absolute_error(y_true, y_pred):
     """Mean absolute error: (1/n) * sum(|y_true - y_pred|)."""
     return float(np.mean(np.abs(y_true - y_pred)))
 
-# Step 19 - root_mean_squared_error (not yet solved)
-# TODO: implement
+# Step 19 - root_mean_squared_error
+import numpy as np
+
+def root_mean_squared_error(y_true, y_pred):
+    """RMSE: sqrt((1/n) * sum((y_true - y_pred)^2))."""
+    return float(np.sqrt(np.mean((y_true - y_pred) ** 2)))
 
 # Step 20 - r_squared (not yet solved)
 # TODO: implement

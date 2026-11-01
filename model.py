@@ -235,8 +235,12 @@ def learning_curve_data(train_losses, val_losses):
     epochs = list(range(1, len(train) + 1))
     return epochs, train, val
 
-# Step 23 - weights_l2_distance (not yet solved)
-# TODO: implement
+# Step 23 - weights_l2_distance
+import numpy as np
+
+def weights_l2_distance(w_gd, w_closed):
+    """Euclidean distance ||w_gd - w_closed||_2."""
+    return float(np.linalg.norm(w_gd - w_closed))
 
 # Step 24 - create_lr_model (not yet solved)
 # TODO: implement

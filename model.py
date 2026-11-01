@@ -102,8 +102,12 @@ def initialize_weights(n_features, seed=None):
         np.random.seed(seed)
     return np.random.randn(n_features) * 0.01
 
-# Step 12 - gd_step (not yet solved)
-# TODO: implement
+# Step 12 - gd_step
+def gd_step(X, y, weights, lr):
+    """Run one full-batch gradient descent update on the weights."""
+    y_pred = predict_linear(X, weights)
+    grad = mse_gradient(X, y, y_pred)
+    return weights - lr * grad
 
 # Step 13 - epoch_train_val_losses (not yet solved)
 # TODO: implement

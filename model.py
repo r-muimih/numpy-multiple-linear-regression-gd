@@ -258,8 +258,36 @@ def create_lr_model(learning_rate=0.01, epochs=1000, patience=50, seed=0):
         "val_losses": [],
     }
 
-# Step 25 - fit_lr_model (not yet solved)
-# TODO: implement
+# Step 25 - fit_lr_model
+import numpy as np
+
+def fit_lr_model(model, X_train, y_train, X_val, y_val):
+    """Fit the model dict in place using train-only statistics, GD, and the normal equation."""
+    mean, std = compute_feature_stats(X_train)
+
+    A_train = prepare_design_matrix(X_train, mean, std)
+    A_val = prepare_design_matrix(X_val, mean, std)
+
+    weights, train_losses, val_losses = train_batch_gd(
+        A_train, y_train, A_val, y_val,
+        model["learning_rate"], model["epochs"], model["patience"],
+        seed=model["seed"],
+    )
+
+    try:
+        normal_weights = normal_equation(A_train, y_train)
+    except np.linalg.LinAlgError:
+        # Rank-deficient design (collinear or constant features):
+        # fall back to the minimum-norm least-squares solution.
+        normal_weights = np.linalg.lstsq(A_train, y_train, rcond=None)[0]
+
+    model["mean"] = mean
+    model["std"] = std
+    model["weights"] = weights
+    model["normal_weights"] = normal_weights
+    model["train_losses"] = train_losses
+    model["val_losses"] = val_losses
+    return model
 
 # Step 26 - predict_lr_model (not yet solved)
 # TODO: implement

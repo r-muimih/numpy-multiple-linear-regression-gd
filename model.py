@@ -109,8 +109,12 @@ def gd_step(X, y, weights, lr):
     grad = mse_gradient(X, y, y_pred)
     return weights - lr * grad
 
-# Step 13 - epoch_train_val_losses (not yet solved)
-# TODO: implement
+# Step 13 - epoch_train_val_losses
+def epoch_train_val_losses(X_train, y_train, X_val, y_val, weights):
+    """Evaluate MSE on train and validation sets for the current weights."""
+    train_loss = mse_loss(y_train, predict_linear(X_train, weights))
+    val_loss = mse_loss(y_val, predict_linear(X_val, weights))
+    return train_loss, val_loss
 
 # Step 14 - update_early_stop_state (not yet solved)
 # TODO: implement

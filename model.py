@@ -70,8 +70,13 @@ def predict_linear(X, weights):
     """Compute linear predictions y_hat = X @ weights."""
     return X @ weights
 
-# Step 8 - mse_loss (not yet solved)
-# TODO: implement
+# Step 8 - mse_loss
+import numpy as np
+
+def mse_loss(y_true, y_pred):
+    """Mean squared error: (1/n) * sum((y_true - y_pred)^2)."""
+    residuals = y_true - y_pred
+    return float(np.mean(residuals ** 2))
 
 # Step 9 - mse_gradient (not yet solved)
 # TODO: implement

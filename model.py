@@ -46,8 +46,13 @@ def standardize_features(X, mean, std):
     X = np.asarray(X, dtype=float)
     return (X - mean) / std
 
-# Step 5 - add_bias_column (not yet solved)
-# TODO: implement
+# Step 5 - add_bias_column
+import numpy as np
+
+
+def add_bias_column(X):
+    X = np.asarray(X, dtype=float)
+    return np.hstack([np.ones((X.shape[0], 1)), X])
 
 # Step 6 - prepare_design_matrix (not yet solved)
 # TODO: implement

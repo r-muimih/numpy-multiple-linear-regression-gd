@@ -204,8 +204,16 @@ def root_mean_squared_error(y_true, y_pred):
     """RMSE: sqrt((1/n) * sum((y_true - y_pred)^2))."""
     return float(np.sqrt(np.mean((y_true - y_pred) ** 2)))
 
-# Step 20 - r_squared (not yet solved)
-# TODO: implement
+# Step 20 - r_squared
+import numpy as np
+
+def r_squared(y_true, y_pred):
+    """R^2 = 1 - SS_res / SS_tot, with SS_tot taken about mean(y_true)."""
+    ss_res = np.sum((y_true - y_pred) ** 2)
+    ss_tot = np.sum((y_true - np.mean(y_true)) ** 2)
+    if ss_tot == 0:
+        return float("nan")
+    return float(1.0 - ss_res / ss_tot)
 
 # Step 21 - evaluate_regression (not yet solved)
 # TODO: implement

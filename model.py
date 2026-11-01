@@ -54,8 +54,16 @@ def add_bias_column(X):
     X = np.asarray(X, dtype=float)
     return np.hstack([np.ones((X.shape[0], 1)), X])
 
-# Step 6 - prepare_design_matrix (not yet solved)
-# TODO: implement
+# Step 6 - prepare_design_matrix
+def prepare_design_matrix(X, mean, std):
+    """Standardize features, then prepend a bias column of ones.
+
+    Returns
+    -------
+    np.ndarray, shape (n, d+1)
+    """
+    X_std = standardize_features(X, mean, std)
+    return add_bias_column(X_std)
 
 # Step 7 - predict_linear (not yet solved)
 # TODO: implement

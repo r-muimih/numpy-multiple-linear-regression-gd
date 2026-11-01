@@ -65,8 +65,10 @@ def prepare_design_matrix(X, mean, std):
     X_std = standardize_features(X, mean, std)
     return add_bias_column(X_std)
 
-# Step 7 - predict_linear (not yet solved)
-# TODO: implement
+# Step 7 - predict_linear
+def predict_linear(X, weights):
+    """Compute linear predictions y_hat = X @ weights."""
+    return X @ weights
 
 # Step 8 - mse_loss (not yet solved)
 # TODO: implement
